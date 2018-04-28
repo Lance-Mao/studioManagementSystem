@@ -82,11 +82,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GrowthLog.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="GrowthLog.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/stationLog/GrowthLog.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="456">
-              <caret line="29" column="12" lean-forward="false" selection-start-line="29" selection-start-column="12" selection-end-line="29" selection-end-column="12" />
+            <state relative-caret-position="354">
+              <caret line="44" column="108" lean-forward="false" selection-start-line="44" selection-start-column="41" selection-end-line="44" selection-end-column="108" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
                 <marker date="1524906612055" expanded="true" signature="1162:2266" ph="..." />
@@ -109,11 +109,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Student.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Student.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/components/stationLog/Student.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="18" column="5" lean-forward="false" selection-start-line="18" selection-start-column="5" selection-end-line="18" selection-end-column="5" />
+            <state relative-caret-position="357">
+              <caret line="75" column="113" lean-forward="true" selection-start-line="75" selection-start-column="49" selection-end-line="75" selection-end-column="113" />
               <folding>
                 <element signature="e#0#38#0" expanded="true" />
               </folding>
@@ -307,12 +307,12 @@
       <workItem from="1524806983571" duration="7576000" />
       <workItem from="1524879262332" duration="673000" />
       <workItem from="1524893073182" duration="8080000" />
-      <workItem from="1524905336730" duration="1498000" />
+      <workItem from="1524905336730" duration="2980000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="17827000" />
+    <option name="totallyTimeSpent" value="19309000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="25" width="1366" height="743" extended-state="6" />
@@ -739,16 +739,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/stationLog/Student.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="5" lean-forward="false" selection-start-line="18" selection-start-column="5" selection-end-line="18" selection-end-column="5" />
-          <folding>
-            <element signature="e#0#38#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/components/stationLog/Index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
@@ -771,13 +761,23 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/stationLog/GrowthLog.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="456">
-          <caret line="29" column="12" lean-forward="false" selection-start-line="29" selection-start-column="12" selection-end-line="29" selection-end-column="12" />
+        <state relative-caret-position="354">
+          <caret line="44" column="108" lean-forward="false" selection-start-line="44" selection-start-column="41" selection-end-line="44" selection-end-column="108" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
             <marker date="1524906612055" expanded="true" signature="1162:2266" ph="..." />
             <marker date="1524906612055" expanded="true" signature="1442:1553" ph="..." />
             <marker date="1524906612055" expanded="true" signature="1893:1956" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/components/stationLog/Student.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="75" column="113" lean-forward="true" selection-start-line="75" selection-start-column="49" selection-end-line="75" selection-end-column="113" />
+          <folding>
+            <element signature="e#0#38#0" expanded="true" />
           </folding>
         </state>
       </provider>
