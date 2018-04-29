@@ -1,18 +1,22 @@
 import * as request from '../request/request';
 import * as StatusCode from '../constants/StatusCode'
 
-const landingJudgment = (content) => {
+export const landingJudgment = (content) => {
     return {
         type: "LANDING_JUDGMENT",
         content
     }
 };
 
-const getLandingInfo = (data) => {
+export const getLandingInfo = (data) => {
+    console.log(data);
     return dispatch => {
-        request.post(`/login/login`,data)
+        request.post(`/user/login`,data)
             .then(result => {
-                if
+                if (result.status === StatusCode.OK) {
+                    console.log(result);
+                    dispatch(landingJudgment(result.data));
+                }
             })
     }
 }

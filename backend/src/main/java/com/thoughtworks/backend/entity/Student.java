@@ -12,11 +12,28 @@ public class Student {
     @Id
     @GeneratedValue
     private int id;
-    private String studentName;//学生姓名
+    private String username;//学生姓名
+    private String password;
     private String studentId;//学生学号
     private String studentImage;//学生头像
     private String studentGrade;//学生年级
     private String studentSkill;//学生专业
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
     public int getId() {
         return id;
@@ -26,13 +43,6 @@ public class Student {
         this.id = id;
     }
 
-    public String getStudentName() {
-        return studentName;
-    }
-
-    public void setStudentName(String studentName) {
-        this.studentName = studentName;
-    }
 
     public String getStudentId() {
         return studentId;

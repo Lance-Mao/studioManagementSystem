@@ -18,7 +18,6 @@ public class StationRecordController {
     @RequestMapping("logList")
     public ResponseEntity logList() {
         Iterable<StationRecord> stationRecordList = stationRecordDao.findAll();
-        System.out.println(123456);
         return new ResponseEntity<>(stationRecordList, HttpStatus.OK);
     }
 }

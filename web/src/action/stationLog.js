@@ -32,7 +32,6 @@ export const getStationLogListByGrowthLog = () => {
     return dispatch => {
         request.get(`/stationRecord/logList`)
             .then(result => {
-                console.log("1231231", result);
                     if (result.status === StatusCode.OK) {
                         dispatch(allStationLogListByGrowthLog(result.data));
                     }

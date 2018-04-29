@@ -1,22 +1,30 @@
 import React, {Component} from 'react';
 import {Form, Icon, Input, Button, Checkbox} from 'antd';
+import * as login from '../../action/login';
+import {connect} from 'react-redux';
+import {withRouter} from 'react-router-dom';
 import '../../static/css/login.css'
 
 const FormItem = Form.Item;
 
 class NormalLoginForm extends React.Component {
 
-    constructor(){
+    constructor() {
         super();
-        this.state = {
-            landingState: false
-        };
+    }
+
+    componentDidMount(){
+        let data = this.props.form.getFieldsValue();
+        this.props.getLandingState(data);
     }
 
     handleSubmit = (e) => {
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
             if (!err) {
+                if (this.props.isLogin) {
+                    this.props.history.push("/stationLog");
+                }
                 console.log('Received values of form: ', values);
             }
         });
@@ -26,9 +34,10 @@ class NormalLoginForm extends React.Component {
         let width = window.innerWidth / 3;
         const {getFieldDecorator} = this.props.form;
         return (
-            <Form onSubmit={this.handleSubmit} className="login-form" style={{width:width,margin:"auto",marginTop:width / 3}}>
+            <Form onSubmit={this.handleSubmit} className="login-form"
+                  style={{width: width, margin: "auto", marginTop: width / 3}}>
                 <FormItem>
-                    {getFieldDecorator('userName', {
+                    {getFieldDecorator('username', {
                         rules: [{required: true, message: 'Please input your username!'}],
                     })(
                         <Input prefix={<Icon type="user" style={{color: 'rgba(0,0,0,.25)'}}/>} placeholder="Username"/>
@@ -61,12 +70,18 @@ class NormalLoginForm extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-
+    return {
+        isLogin: state.Login.isLogin
+    };
 };
 
 const mapDispatchToProps = (dispatch) => {
-
+    return {
+        getLandingState: (data) => {
+            dispatch(login.getLandingInfo(data));
+        }
+    }
 };
 
 const LoginForm = Form.create()(NormalLoginForm);
-export default LoginForm;
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(LoginForm));
