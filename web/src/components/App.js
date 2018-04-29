@@ -44,11 +44,15 @@ class App extends Component {
                         >
                             <SubMenu key="sub1" title={<span><Icon type="user" />成长计划</span>}>
                                 <Menu.Item key="1">
-                                    <Link to={'/stationLog'} onClick={this.path.bind(this, "我的日志")}>
+                                    <Link to={'/stationLog'} onClick={this.path.bind(this, "日志列表")}>
                                         <span>
-                                    <Icon type="edit"/>站会日志</span></Link>
+                                    <Icon type="bars"/>站会日志</span></Link>
                                 </Menu.Item>
-                                <Menu.Item key="2">option2</Menu.Item>
+                                <Menu.Item key="2">
+                                    <Link to={'/writeGrowthLog'} onClick={this.path.bind(this, "我的日志")}>
+                                        <span>
+                                    <Icon type="edit"/>写成长日志</span></Link>
+                                </Menu.Item>
                             </SubMenu>
                             <SubMenu key="sub2" title={<span><Icon type="laptop" />subnav 2</span>}>
                                 <Menu.Item key="5">option5</Menu.Item>

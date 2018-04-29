@@ -15,11 +15,8 @@ public class StationRecord {
     @Id
     @GeneratedValue
     private int id;
+    private int stuId;         //学生id
     private Date releaseDate;  //发布日期
-    private String studentName;//学生姓名
-    private String studentImage;//学生头像
-    private String studentDescription;//学生相关描述
-
     private String logTitle;    //日志标题
     private String logContent;    //日志内容
     private String logLike;    //日志喜欢
@@ -36,36 +33,20 @@ public class StationRecord {
         this.id = id;
     }
 
+    public int getStuId() {
+        return stuId;
+    }
+
+    public void setStuId(int stuId) {
+        this.stuId = stuId;
+    }
+
     public Date getReleaseDate() {
         return releaseDate;
     }
 
     public void setReleaseDate(Date releaseDate) {
         this.releaseDate = releaseDate;
-    }
-
-    public String getStudentName() {
-        return studentName;
-    }
-
-    public void setStudentName(String studentName) {
-        this.studentName = studentName;
-    }
-
-    public String getStudentImage() {
-        return studentImage;
-    }
-
-    public void setStudentImage(String studentImage) {
-        this.studentImage = studentImage;
-    }
-
-    public String getStudentDescription() {
-        return studentDescription;
-    }
-
-    public void setStudentDescription(String studentDescription) {
-        this.studentDescription = studentDescription;
     }
 
     public String getLogTitle() {

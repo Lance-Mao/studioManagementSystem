@@ -1,0 +1,10 @@
+.showMarkdown {
+    border: 1px solid #e8e8e8;
+    max-width: 100%;
+    height: auto;
+}
+
+.postButton {
+    float: right;
+    margin-right: 10px;
+}
