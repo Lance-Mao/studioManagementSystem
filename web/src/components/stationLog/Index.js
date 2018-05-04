@@ -8,6 +8,14 @@ import StationLog from "../../reducers/stationLog";
 
 class Index extends Component {
 
+    constructor() {
+        super();
+    }
+
+    componentWillMount() {
+        this.props.getStudentList();
+    }
+
     render() {
         return (
             <div>
@@ -20,6 +28,18 @@ class Index extends Component {
     }
 }
 
+const mapStateToProps = (state) => {
+    return {
+        studentList: state.StationLog.studentList
+    };
+};
 
+const mapDispatchToProps = (dispatch) => {
+    return {
+        getStudentList: () => {
+            dispatch(studentListAction.getStationLogList());
+        }
+    }
+};
 
-export default Index;
+export default connect(mapStateToProps, mapDispatchToProps)(Index);

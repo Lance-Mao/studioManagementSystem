@@ -1,21 +1,17 @@
 package com.thoughtworks.backend.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 @Entity
 @Table(name = "web_stationRecord")
-public class StationRecord {
-    /**
-     * 目前将所有字段信息放在同一张表中
-     */
+public class StationRecord implements Serializable {
     @Id
     @GeneratedValue
     private int id;
-    private int stuId;         //学生id
     private Date releaseDate;  //发布日期
     private String logTitle;    //日志标题
     private String logContent;    //日志内容
@@ -24,6 +20,33 @@ public class StationRecord {
     private String logCommentCount;  //日志评论次数
     private String logCommentContent;  //日志评论内容
     private String logImage;  //日志图片
+    @JoinColumn(name = "stu_id")
+    @JsonIgnore
+    @ManyToOne(cascade = CascadeType.MERGE)
+    private Student student;
+
+    public StationRecord() {
+    }
+
+    public StationRecord(Date releaseDate, String logTitle, String logContent, String logLike, String logLikeIt, String logCommentCount, String logCommentContent, String logImage) {
+        this.releaseDate = releaseDate;
+        this.logTitle = logTitle;
+        this.logContent = logContent;
+        this.logLike = logLike;
+        this.logLikeIt = logLikeIt;
+        this.logCommentCount = logCommentCount;
+        this.logCommentContent = logCommentContent;
+        this.logImage = logImage;
+    }
+
+
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
+    }
 
     public int getId() {
         return id;
@@ -31,14 +54,6 @@ public class StationRecord {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public int getStuId() {
-        return stuId;
-    }
-
-    public void setStuId(int stuId) {
-        this.stuId = stuId;
     }
 
     public Date getReleaseDate() {

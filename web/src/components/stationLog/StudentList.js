@@ -21,10 +21,6 @@ class StudentList extends Component {
         }
     }
 
-    componentDidMount() {
-        this.props.getStudentList(()=>this.setState({loading:false}));
-    }
-
     getData = (callback) => {
         reqwest({
             url: fakeDataUrl,
@@ -56,7 +52,7 @@ class StudentList extends Component {
     }
 
     render() {
-        console.log(this.props.studentList,'asdasd')
+        console.log(this.props.studentList, 'asdasd')
         const {loading, loadingMore, showLoadingMore} = this.state;
         const loadMore = showLoadingMore ? (
             <div style={{textAlign: 'center', marginTop: 12, height: 32, lineHeight: '32px'}}>
@@ -91,12 +87,4 @@ const mapStateToProps = (state) => {
     };
 };
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        getStudentList: (callback) => {
-            dispatch(studentListAction.getStationLogList(callback));
-        }
-    }
-};
-
-export default connect(mapStateToProps,mapDispatchToProps)(StudentList);
+export default connect(mapStateToProps)(StudentList);

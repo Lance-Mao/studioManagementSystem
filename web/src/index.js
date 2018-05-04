@@ -21,6 +21,7 @@ ReactDOM.render(
         <BrowserRouter>
             <div>
                 <App>
+                    <Route exact path="/" component={StationLog}/>
                     <Route path="/stationLog" component={StationLog}/>
                     <Route path="/writeGrowthLog" component={WriteGrowthLog}/>
                     <Route path="/login" component={Login}/>

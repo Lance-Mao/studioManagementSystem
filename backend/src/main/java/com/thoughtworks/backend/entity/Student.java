@@ -1,13 +1,12 @@
 package com.thoughtworks.backend.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.Set;
 
 @Entity
 @Table(name = "web_student")
-public class Student {
+public class Student implements Serializable {
 
     @Id
     @GeneratedValue
@@ -18,6 +17,29 @@ public class Student {
     private String studentImage;//学生头像
     private String studentGrade;//学生年级
     private String studentSkill;//学生专业
+
+    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
+    private Set<StationRecord> stationRecord;
+
+    public Student() {
+    }
+
+    public Student(String username, String password, String studentId, String studentImage, String studentGrade, String studentSkill) {
+        this.username = username;
+        this.password = password;
+        this.studentId = studentId;
+        this.studentImage = studentImage;
+        this.studentGrade = studentGrade;
+        this.studentSkill = studentSkill;
+    }
+
+    public Set<StationRecord> getStationRecord() {
+        return stationRecord;
+    }
+
+    public void setStationRecord(Set<StationRecord> stationRecord) {
+        this.stationRecord = stationRecord;
+    }
 
     public String getUsername() {
         return username;

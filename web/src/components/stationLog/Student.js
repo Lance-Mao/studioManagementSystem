@@ -10,8 +10,8 @@ class Student extends Component {
         return (
             <List.Item.Meta
                 avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"/>}
-                title={<a href="https://ant.design">{data.studentName}</a>}
-                description={data.studentDescription}
+                title={<a href="https://ant.design">{data.username}</a>}
+                description={data.studentSkill}
             />
         );
     }

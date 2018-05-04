@@ -2,21 +2,20 @@ import React, {Component} from 'react';
 import GrowthLog from './GrowthLog'
 import {connect} from 'react-redux';
 import {List, Card, Row, Col} from 'antd';
-import * as studentListAction from "../../action/stationLog";
 
 /**
  * 成长日志
  */
 class GrowthLogList extends Component {
 
-    componentDidMount(){
-        this.props.getGrowthLogList();
+    constructor(props){
+        super(props);
     }
 
     render() {
-        const logList = this.props.growthLogList;
+        const logList = this.props.studentList;
         const listData = [];
-        for (let item of logList) {
+        for (let item of this.props.studentList) {
             listData.push({
                 href: 'http://ant.design',
                 title: `ant design part`,
@@ -41,7 +40,7 @@ class GrowthLogList extends Component {
                     itemLayout="vertical"
                     size="large"
                     pagination={pagination}
-                    dataSource={logList}
+                    dataSource={listData}
                     footer={<div><b>ant design</b> footer part</div>}
                     renderItem={item => (
                         <GrowthLog growthLog={item} />
@@ -56,16 +55,8 @@ class GrowthLogList extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        growthLogList: state.StationLog.stationLogList
+        studentList: state.StationLog.studentList
     };
 };
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        getGrowthLogList: () => {
-            dispatch(studentListAction.getStationLogListByGrowthLog());
-        }
-    }
-};
-
-export default connect(mapStateToProps,mapDispatchToProps)(GrowthLogList);
+export default connect(mapStateToProps)(GrowthLogList);
