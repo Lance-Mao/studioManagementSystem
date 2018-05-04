@@ -14,7 +14,7 @@ class StudentList extends Component {
     constructor() {
         super();
         this.state = {
-            loading: true,
+            // loading: true,
             loadingMore: false,
             showLoadingMore: true,
             studentList: [],
@@ -52,8 +52,7 @@ class StudentList extends Component {
     }
 
     render() {
-        console.log(this.props.studentList, 'asdasd')
-        const {loading, loadingMore, showLoadingMore} = this.state;
+        const {loadingMore, showLoadingMore} = this.state;
         const loadMore = showLoadingMore ? (
             <div style={{textAlign: 'center', marginTop: 12, height: 32, lineHeight: '32px'}}>
                 {loadingMore && <Spin/>}
@@ -64,7 +63,7 @@ class StudentList extends Component {
             <Card title="学生列表" extra={<a href="#">More</a>} style={{margin: 5, overflow: 'auto', height: 1000}}>
                 <List
                     className="demo-loadmore-list"
-                    loading={loading}
+                    // loading={loading}
                     itemLayout="horizontal"
                     loadMore={loadMore}
                     dataSource={this.props.studentList}

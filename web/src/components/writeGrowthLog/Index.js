@@ -1,12 +1,10 @@
 import React, {Component} from 'react';
-import {Card, Row, Col,Button} from 'antd';
+import {Button, Card, Col, Row} from 'antd';
 import {connect} from 'react-redux';
 import '../../static/css/writeGrowthLog.css'
 import ArticleList from './ArticleList';
 import EditArticles from './EditArticles';
 import EditArticlesByMarkdown from './EditArticlesByMarkdown';
-import * as studentListAction from '../../action/stationLog';
-import StationLog from "../../reducers/stationLog";
 
 
 class Index extends Component {

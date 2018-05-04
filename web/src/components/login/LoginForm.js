@@ -13,24 +13,23 @@ class NormalLoginForm extends React.Component {
         super();
     }
 
-    componentDidMount(){
-        let data = this.props.form.getFieldsValue();
-        this.props.getLandingState(data);
+    componentDidMount() {
+        console.log("登陆状态", this.props.isLogin);
     }
 
     handleSubmit = (e) => {
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
             if (!err) {
-                if (this.props.isLogin) {
-                    this.props.history.push("/stationLog");
-                }
-                console.log('Received values of form: ', values);
+                this.props.getLandingState(values);
             }
         });
     };
 
     render() {
+        if (this.props.isLogin) {
+            this.props.history.push("/stationLog");
+        }
         let width = window.innerWidth / 3;
         const {getFieldDecorator} = this.props.form;
         return (

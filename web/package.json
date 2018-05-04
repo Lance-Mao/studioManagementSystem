@@ -27,6 +27,7 @@
     "babel-plugin-import": "^1.7.0",
     "http-proxy-middleware": "^0.18.0",
     "react-app-rewired": "^1.5.2",
+    "react-hot-loader": "^4.0.0",
     "react-router-dom": "^4.2.2"
   }
 }

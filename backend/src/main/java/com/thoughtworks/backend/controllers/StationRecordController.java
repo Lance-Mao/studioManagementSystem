@@ -21,8 +21,6 @@ public class StationRecordController {
     @RequestMapping("/logList")
     public ResponseEntity logList() {
 
-        System.out.println(new Date());
-
         return new ResponseEntity<>(userDao.findAll(), HttpStatus.OK);
     }
 }

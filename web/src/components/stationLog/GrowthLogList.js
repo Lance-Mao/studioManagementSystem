@@ -13,37 +13,26 @@ class GrowthLogList extends Component {
     }
 
     render() {
-        const logList = this.props.studentList;
-        const listData = [];
-        for (let item of this.props.studentList) {
-            listData.push({
-                href: 'http://ant.design',
-                title: `ant design part`,
-                avatar: 'https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png',
-                description: 'Ant Design, a design language for background applications, is refined by Ant UED Team.',
-                content: item.logContent,
-            });
-        }
 
         const pagination = {
             pageSize: 10,
             current: 1,
-            total: listData.length,
+            total: this.props.studentList.length,
             onChange: (() => {
             }),
         };
 
-
+        console.log(this.props.studentList.stationRecord, "stationRecord中的数据");
         return (
             <Card title="成长日志内容" extra={<a href="#">More</a>} style={{margin: 5}}>
                 <List
                     itemLayout="vertical"
                     size="large"
                     pagination={pagination}
-                    dataSource={listData}
+                    dataSource={this.props.studentList}
                     footer={<div><b>ant design</b> footer part</div>}
                     renderItem={item => (
-                        <GrowthLog growthLog={item} />
+                        item.stationRecord.map((elem,i) => <GrowthLog growthLog={elem} key={i} />)
                     )}
                 />
             </Card>
