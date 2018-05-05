@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Button, Card, Col, Row} from 'antd';
+import {Link, withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
 import '../../static/css/writeGrowthLog.css'
 import ArticleList from './ArticleList';
@@ -16,8 +17,11 @@ class Index extends Component {
             loading: false,
             iconLoading: false,
             selectViewOne: true,
+            selectViewOneWidth: 8,
             selectViewTwo: true,
+            selectViewTwoWidth: 16,
             selectViewThr: false,
+            selectViewThrWidth: 12,
             roleName:"预览"
         };
     }
@@ -39,6 +43,7 @@ class Index extends Component {
             {
                 selectViewThr:!whetherToPreviewThr,
                 selectViewOne:!whetherToPreviewOne,
+                selectViewTwoWidth: whetherToPreviewThr ? 16 : 12,
                 roleName: whetherToPreviewThr ? "预览" : "关闭预览"
             })
     }
@@ -53,15 +58,15 @@ class Index extends Component {
                 </Row>
                 <Row>
                     {
-                        this.state.selectViewOne ? <Col span={6}>
+                        this.state.selectViewOne ? <Col span={this.state.selectViewOneWidth}>
                             <Card title="成长日志列表" extra={<a href="#">More</a>} style={{margin: 5}}>
-                                <ArticleList/>
+                                <ArticleList userInfo={this.props.userInfo}/>
                             </Card>
                         </Col> : ""
                     }
 
                     {
-                        this.state.selectViewTwo ? <Col span={12}>
+                        this.state.selectViewTwo ? <Col span={this.state.selectViewTwoWidth}>
                             <Card title="编辑" extra={<a onClick={this.selectView.bind(this)}>{this.state.roleName}</a>} style={{margin: 5}}>
                                 <EditArticles getEditContent={this.getEditContent.bind(this)}/>
                             </Card>
@@ -69,7 +74,7 @@ class Index extends Component {
                     }
 
                     {
-                        this.state.selectViewThr ? <Col span={12}>
+                        this.state.selectViewThr ? <Col span={this.state.selectViewThrWidth}>
                             <Card title="预览" extra={<a href="#">More</a>} style={{margin: 5}}>
                                 <EditArticlesByMarkdown editContent={this.state.editContent}/>
                             </Card>
@@ -83,5 +88,10 @@ class Index extends Component {
     }
 }
 
+const mapStateToProps = (state) => {
+    return {
+        userInfo:state.Login.userInfo
+    }
+};
 
-export default Index;
+export default withRouter(connect(mapStateToProps)(Index));

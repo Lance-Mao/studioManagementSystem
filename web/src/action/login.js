@@ -14,7 +14,6 @@ export const getLandingInfo = (data) => {
         request.post(`/user/login`,data)
             .then(result => {
                 if (result.status === StatusCode.OK) {
-                    console.log(result);
                     dispatch(landingJudgment(result.data));
                 }
             })

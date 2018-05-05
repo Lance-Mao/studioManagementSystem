@@ -29,7 +29,7 @@ public class UserController {
             } else {
                 msg = true;
             }
-            data.put("stu", stu);
+            data.put("stu", stu.get(0));
             data.put("isLogin", msg);
             return new ResponseEntity(data, HttpStatus.OK);
         } catch (Exception e) {
