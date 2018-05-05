@@ -15,6 +15,10 @@ class Index extends Component {
             editContent: "",
             loading: false,
             iconLoading: false,
+            selectViewOne: true,
+            selectViewTwo: true,
+            selectViewThr: false,
+            roleName:"预览"
         };
     }
 
@@ -28,6 +32,17 @@ class Index extends Component {
         });
     }
 
+    selectView(){
+        let whetherToPreviewThr = this.state.selectViewThr;
+        let whetherToPreviewOne = this.state.selectViewOne;
+        this.setState(
+            {
+                selectViewThr:!whetherToPreviewThr,
+                selectViewOne:!whetherToPreviewOne,
+                roleName: whetherToPreviewThr ? "预览" : "关闭预览"
+            })
+    }
+
     render() {
         return (
             <div>
@@ -37,22 +52,31 @@ class Index extends Component {
                     </Button>
                 </Row>
                 <Row>
-                    <Col span={4}>
-                        <Card title="成长日志列表" extra={<a href="#">More</a>} style={{margin: 5}}>
-                            <ArticleList/>
-                        </Card>
-                    </Col>
+                    {
+                        this.state.selectViewOne ? <Col span={6}>
+                            <Card title="成长日志列表" extra={<a href="#">More</a>} style={{margin: 5}}>
+                                <ArticleList/>
+                            </Card>
+                        </Col> : ""
+                    }
 
-                    <Col span={10}>
-                        <Card title="编辑" extra={<a href="#">More</a>} style={{margin: 5}}>
-                            <EditArticles getEditContent={this.getEditContent.bind(this)}/>
-                        </Card>
-                    </Col>
-                    <Col span={10}>
-                        <Card title="预览" extra={<a href="#">More</a>} style={{margin: 5}}>
-                            <EditArticlesByMarkdown editContent={this.state.editContent}/>
-                        </Card>
-                    </Col>
+                    {
+                        this.state.selectViewTwo ? <Col span={12}>
+                            <Card title="编辑" extra={<a onClick={this.selectView.bind(this)}>{this.state.roleName}</a>} style={{margin: 5}}>
+                                <EditArticles getEditContent={this.getEditContent.bind(this)}/>
+                            </Card>
+                        </Col> : ""
+                    }
+
+                    {
+                        this.state.selectViewThr ? <Col span={12}>
+                            <Card title="预览" extra={<a href="#">More</a>} style={{margin: 5}}>
+                                <EditArticlesByMarkdown editContent={this.state.editContent}/>
+                            </Card>
+                        </Col> : ""
+                    }
+
+
                 </Row>
             </div>
         );
