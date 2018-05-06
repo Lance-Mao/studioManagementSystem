@@ -43,9 +43,6 @@ class StudentList extends Component {
                 data,
                 loadingMore: false,
             }, () => {
-                // Resetting window's offsetTop so as to display react-virtualized demo underfloor.
-                // In real scene, you can using public method of react-virtualized:
-                // https://stackoverflow.com/questions/46700726/how-to-use-public-method-updateposition-of-react-virtualized
                 window.dispatchEvent(new Event('resize'));
             });
         });

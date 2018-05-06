@@ -15,7 +15,14 @@
     "redux-thunk": "^2.2.0",
     "reqwest": "^2.0.5"
   },
-  "proxy": "http://localhost:8080",
+  "proxy": {
+    "/web": {
+      "target": "http://localhost:8080",
+      "secure": false,
+      "changeOrign": true
+    }
+  },
+
   "scripts": {
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",

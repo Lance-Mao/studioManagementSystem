@@ -4,6 +4,7 @@ import '../static/css/App.css';
 import {Link, withRouter} from 'react-router-dom';
 import {Layout, Menu, Breadcrumb, Icon, Row, Col, Tabs, message} from 'antd'
 import Index from './stationLog/Index'
+import UserInfo from "./login/UserInfo";
 
 const {SubMenu} = Menu;
 const MenuItemGroup = Menu.ItemGroup;
@@ -29,7 +30,6 @@ class App extends Component {
     };
 
     render() {
-        console.log("Login登陆状态",this.props.isLogin);
         return (
             <Layout>
                 <Menu
@@ -59,10 +59,13 @@ class App extends Component {
                             Link</a>
                     </Menu.Item>
                     <Menu.Item style={{float: "right", marginRight: 40}}>
-                        {this.state.isLogin}
-                        <Link to={'/login'} onClick={this.path.bind(this, "登陆")}>
-                            登陆
-                        </Link>
+                        {
+                            this.props.isLogin ? <UserInfo userInfo={this.props.userInfo}/> :
+                                <Link to={'/login'} onClick={this.path.bind(this, "登陆")}>
+                                    登陆
+                                </Link>
+                        }
+
                     </Menu.Item>
                 </Menu>
                 <Layout>
@@ -107,8 +110,10 @@ class App extends Component {
 }
 
 const mapStateToProps = (state) => {
+    console.log(state, "APP中的state");
     return {
-        isLogin: state.isLogin
+        isLogin: state.Login.isLogin,
+        userInfo: state.Login.userInfo
     }
 };
 

@@ -1,19 +1,21 @@
 import React, {Component} from 'react';
-import {Button, Card, Col, Row} from 'antd';
+import {Button, Card, Col, Row, Input, Form, Alert} from 'antd';
 import {Link, withRouter} from 'react-router-dom';
 import {connect} from 'react-redux';
 import '../../static/css/writeGrowthLog.css'
 import ArticleList from './ArticleList';
 import EditArticles from './EditArticles';
 import EditArticlesByMarkdown from './EditArticlesByMarkdown';
+import * as stationLogAction from "../../action/stationLog";
 
 
 class Index extends Component {
 
-    constructor(){
+    constructor() {
         super();
         this.state = {
             editContent: "",
+            editContentTitle: "",
             loading: false,
             iconLoading: false,
             selectViewOne: true,
@@ -22,37 +24,83 @@ class Index extends Component {
             selectViewTwoWidth: 16,
             selectViewThr: false,
             selectViewThrWidth: 12,
-            roleName:"预览"
+            roleName: "预览",
+            messageText: "",
+            typeText: "success"
         };
     }
 
     enterLoading = () => {
-        this.setState({loading: true});
+        console.log("显示的日志信息", this.state.editContent);
+        console.log("显示的日志信息", this.state.editContentTitle);
+        if (!this.state.editContentTitle) {
+            this.setState({
+                messageText: "文章标题不能为空",
+                typeText: "warning"
+            });
+            return;
+        }
+        if (!this.state.editContent) {
+            this.setState({
+                messageText: "文章内容不能为空",
+                typeText: "warning"
+            });
+            return;
+        }
+        let stationRecord = {
+            logContent: this.state.editContent,
+            logTitle: this.state.editContentTitle,
+            userId: this.props.userInfo.id
+        };
+        this.props.saveGrowthLog(stationRecord);
+        setTimeout('this.setState({loading: false});', 1000);
     };
 
-    getEditContent(e){
+    getEditContent(e) {
         this.setState({
             editContent: e
         });
     }
 
-    selectView(){
+    selectView() {
         let whetherToPreviewThr = this.state.selectViewThr;
         let whetherToPreviewOne = this.state.selectViewOne;
         this.setState(
             {
-                selectViewThr:!whetherToPreviewThr,
-                selectViewOne:!whetherToPreviewOne,
+                selectViewThr: !whetherToPreviewThr,
+                selectViewOne: !whetherToPreviewOne,
                 selectViewTwoWidth: whetherToPreviewThr ? 16 : 12,
                 roleName: whetherToPreviewThr ? "预览" : "关闭预览"
             })
+    }
+
+    getArticleTitle(e) {
+        if (e.target.value) {
+            this.setState({
+                editContentTitle: e.target.value,
+                messageText: "",
+                typeText: "success"
+            })
+        } else {
+            this.setState({
+                messageText: "文章标题不能为空",
+                typeText: "warning"
+            })
+        }
     }
 
     render() {
         return (
             <div>
                 <Row>
-                    <Button className="postButton" type="primary" loading={this.state.loading} onClick={this.enterLoading}>
+                    {this.state.typeText === 'success' ? "" :
+                        <Alert message={this.state.messageText}
+                               type={this.state.typeText}
+                               showIcon
+                               style={{width: '30%', float: 'left', marginLeft: 5}}
+                        />}
+                    <Button className="postButton" type="primary" loading={this.state.loading}
+                            onClick={this.enterLoading.bind(this)}>
                         发布
                     </Button>
                 </Row>
@@ -67,7 +115,16 @@ class Index extends Component {
 
                     {
                         this.state.selectViewTwo ? <Col span={this.state.selectViewTwoWidth}>
-                            <Card title="编辑" extra={<a onClick={this.selectView.bind(this)}>{this.state.roleName}</a>} style={{margin: 5}}>
+                            <Card
+                                title={<Input
+                                    style={{width: '60%', height: '100%'}}
+                                    onBlur={this.getArticleTitle.bind(this)}
+                                    placeholder="ArticleTitle"
+
+                                />}
+
+                                extra={<a onClick={this.selectView.bind(this)}>{this.state.roleName}</a>}
+                                style={{margin: 5, padding: 0}}>
                                 <EditArticles getEditContent={this.getEditContent.bind(this)}/>
                             </Card>
                         </Col> : ""
@@ -80,8 +137,6 @@ class Index extends Component {
                             </Card>
                         </Col> : ""
                     }
-
-
                 </Row>
             </div>
         );
@@ -90,8 +145,15 @@ class Index extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        userInfo:state.Login.userInfo
+        userInfo: state.Login.userInfo
     }
 };
 
-export default withRouter(connect(mapStateToProps)(Index));
+const mapDispatchProps = (dispatch) => {
+    return {
+        saveGrowthLog: (growthLogInfo) => {
+            dispatch(stationLogAction.saveGrowthLogAction(growthLogInfo))
+        }
+    }
+}
+export default withRouter(connect(mapStateToProps, mapDispatchProps)(Index));

@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
-import {Card, Row, Col} from 'antd';
+import {Col, Row} from 'antd';
 import {connect} from 'react-redux';
+import {withRouter} from 'react-router-dom';
 import StudentList from './StudentList';
 import GrowthLogList from './GrowthLogList';
 import * as studentListAction from '../../action/stationLog';
-import StationLog from "../../reducers/stationLog";
 
 class Index extends Component {
 
@@ -42,4 +42,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Index);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Index));

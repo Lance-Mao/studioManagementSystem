@@ -18,11 +18,8 @@ class GrowthLogList extends Component {
             pageSize: 10,
             current: 1,
             total: this.props.studentList.length,
-            onChange: (() => {
-            }),
         };
 
-        console.log(this.props.studentList.stationRecord, "stationRecord中的数据");
         return (
             <Card title="成长日志内容" extra={<a href="#">More</a>} style={{margin: 5}}>
                 <List

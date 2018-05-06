@@ -6,7 +6,6 @@ class GrowthLog extends Component {
 
     render() {
         const item = this.props.growthLog;
-        console.log(item, "传过来的数据");
         const IconText = ({type, text}) => (
             <span>
                 <Icon type={type} style={{marginRight: 8}}/>
